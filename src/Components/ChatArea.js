@@ -23,7 +23,7 @@ function ChatArea() {
   // const refresh = useSelector((state) => state.refreshKey);
   const { refresh, setRefresh } = useContext(myContext);
   const [loaded, setloaded] = useState(false);
-  var link = "https://live-chat-server-alpha.vercel.app"
+  var link = "https://live-chat-server-5pyt.vercel.app"
 
   const sendMessage = () => {
     // console.log("SendMessage Fired to", chat_id._id);

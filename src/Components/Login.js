@@ -12,7 +12,7 @@ function Login() {
 
   const [logInStatus, setLogInStatus] = React.useState("");
   const [signInStatus, setSignInStatus] = React.useState("");
-  var link = "https://live-chat-server-alpha.vercel.app"
+  var link = "https://live-chat-server-5pyt.vercel.app"
 
   const navigate = useNavigate();
 

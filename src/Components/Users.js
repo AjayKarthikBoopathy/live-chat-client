@@ -14,7 +14,7 @@ import { myContext } from "./MainContainer";
 function Users() {
   // const [refresh, setRefresh] = useState(true);
   const { refresh, setRefresh } = useContext(myContext);
-  var link = "https://live-chat-server-alpha.vercel.app"
+  var link = "https://live-chat-server-5pyt.vercel.app"
   const lightTheme = useSelector((state) => state.themeKey);
   const [users, setUsers] = useState([]);
   const userData = JSON.parse(localStorage.getItem("userData"));

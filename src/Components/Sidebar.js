@@ -16,7 +16,7 @@ import { refreshSidebarFun } from "../Features/refreshSidebar";
 import { myContext } from "./MainContainer";
 
 function Sidebar() {
-  var link = "https://live-chat-server-alpha.vercel.app"
+  var link = "https://live-chat-server-5pyt.vercel.app"
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const lightTheme = useSelector((state) => state.themeKey);
