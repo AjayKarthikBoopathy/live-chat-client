@@ -18,7 +18,8 @@ function Groups() {
   const lightTheme = useSelector((state) => state.themeKey);
   const dispatch = useDispatch();
   const [groups, SetGroups] = useState([]);
-  var link = "https://live-chat-server-5pyt.vercel.app"
+  // var link = "https://live-chat-server-5pyt.vercel.app";
+  var link = "https://live-chat-server-nlrk.onrender.com";
 
   const userData = JSON.parse(localStorage.getItem("userData"));
   // console.log("Data from LocalStorage : ", userData);

@@ -15,7 +15,8 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 function CreateGroups() {
-  var link = "https://live-chat-server-5pyt.vercel.app"
+  // var link = "https://live-chat-server-5pyt.vercel.app";
+  var link = "https://live-chat-server-nlrk.onrender.com";
   const lightTheme = useSelector((state) => state.themeKey);
   const userData = JSON.parse(localStorage.getItem("userData"));
   // console.log("Data from LocalStorage : ", userData);
