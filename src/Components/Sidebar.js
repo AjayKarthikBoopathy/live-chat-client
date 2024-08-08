@@ -22,7 +22,7 @@ function Sidebar() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const lightTheme = useSelector((state) => state.themeKey);
-  // const refresh = useSelector((state) => state.refreshKey);
+   const refresh2 = useSelector((state) => state.refreshKey);
   const { refresh, setRefresh } = useContext(myContext);
   console.log("Context API : refresh : ", refresh);
   const [conversations, setConversations] = useState([]);
@@ -47,9 +47,9 @@ function Sidebar() {
     axios.get(`${link}/chat/`, config).then((response) => {
       console.log("Data refresh in sidebar ", response.data);
       setConversations(response.data);
-      // setRefresh(!refresh);
+      setRefresh(!refresh);
     });
-  }, [refresh]);
+  }, [refresh, dispatch]);
 
   return (
     <div className="sidebar-container">
@@ -154,7 +154,7 @@ function Sidebar() {
                 key={index}
                 onClick={() => {
                   console.log("Refresh fired from sidebar");
-                  // dispatch(refreshSidebarFun());
+                  dispatch(refreshSidebarFun(refresh));
                   setRefresh(!refresh);
                 }}
               >

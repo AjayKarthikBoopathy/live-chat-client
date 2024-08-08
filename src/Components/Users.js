@@ -41,7 +41,7 @@ function Users() {
       setUsers(data.data);
       // setRefresh(!refresh);
     });
-  }, [refresh]);
+  }, [refresh, dispatch]);
 
   return (
     <AnimatePresence>
@@ -102,10 +102,10 @@ function Users() {
                     },
                     config
                   );
-                  dispatch(refreshSidebarFun());
+                  dispatch(refreshSidebarFun(refresh));
                 }}
               >
-                <p className={"con-icon" + (lightTheme ? "" : " dark")}>T</p>
+                <p className={"con-icon" + (lightTheme ? "" : " dark")}>{user.name[0]}</p>
                 <p className={"con-title" + (lightTheme ? "" : " dark")}>
                   {user.name}
                 </p>
