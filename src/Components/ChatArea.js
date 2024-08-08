@@ -9,6 +9,9 @@ import { useParams } from "react-router-dom";
 import Skeleton from "@mui/material/Skeleton";
 import axios from "axios";
 import { myContext } from "./MainContainer";
+import io from "socket.io-client";
+
+var chat, socket;
 
 function ChatArea() {
   const lightTheme = useSelector((state) => state.themeKey);
