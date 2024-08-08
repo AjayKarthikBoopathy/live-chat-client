@@ -19,14 +19,18 @@ function ChatArea() {
   // console.log(chat_id, chat_user);
   const userData = JSON.parse(localStorage.getItem("userData"));
   const [allMessages, setAllMessages] = useState([]);
+  const [allMessagesCopy, setAllMessagesCopy] = useState([]);
   // console.log("Chat area id : ", chat_id._id);
   // const refresh = useSelector((state) => state.refreshKey);
   const { refresh, setRefresh } = useContext(myContext);
   const [loaded, setloaded] = useState(false);
+  const [socketConnectionStatus, setSocketConnectionStatus] = useState(false);
+  // var link = "https://localhost:8080";
   // var link = "https://live-chat-server-5pyt.vercel.app";
   var link = "https://live-chat-server-nlrk.onrender.com";
 
   const sendMessage = () => {
+    var data = null; ////
     // console.log("SendMessage Fired to", chat_id._id);
     const config = {
       headers: {
@@ -42,14 +46,39 @@ function ChatArea() {
         },
         config
       )
-      .then(({ data }) => {
+      .then(({ response }) => { ////
+        data = response; ////
         console.log("Message Fired");
       });
+      socket.emit("newMessage", data);  // socket
   };
+
+  // Socket - Connect to socket
+  useEffect(() => {
+    socket = io(link);
+    socket.emit("setup", userData);
+    socket.on("connection", () => {
+      setSocketConnectionStatus(!socketConnectionStatus);
+    });
+  }, []);
+
   // const scrollToBottom = () => {
   //   messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   // };
 
+  // Socket - New Message Received
+  useEffect(() => {
+    socket.on("message received", (newMessage) => {
+      if (!allMessagesCopy || allMessagesCopy._id !== newMessage._id) {
+        // setAllMessages([...allMessages], newMessage);
+      }
+      else {
+        setAllMessages([...allMessages], newMessage);
+      }
+    })
+  })
+
+  // fetch chats
   useEffect(() => {
     console.log("Users refreshed");
     const config = {
@@ -62,10 +91,12 @@ function ChatArea() {
       .then(({ data }) => {
         setAllMessages(data);
         setloaded(true);
+        socket.emit("join chat", chat_id); // Socket
         // console.log("Data from Acess Chat API ", data);
       });
     // scrollToBottom();
-  }, [refresh, chat_id, userData.data.token]);
+    setAllMessagesCopy(allMessages); ////
+  }, [refresh, chat_id, userData.data.token, allMessages]); ////
 
   if (!loaded) {
     return (

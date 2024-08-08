@@ -15,6 +15,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 function CreateGroups() {
+  // var link = "https://localhost:8080";
   // var link = "https://live-chat-server-5pyt.vercel.app";
   var link = "https://live-chat-server-nlrk.onrender.com";
   const lightTheme = useSelector((state) => state.themeKey);
@@ -50,7 +51,8 @@ function CreateGroups() {
       `${link}/chat/createGroup`,
       {
         name: groupName,
-        users: '["647d94aea97e40a17278c7e5","647d999e4c3dd7ca9a2e6543"]',
+        users: '["647d94aea97e40a17278c7e5","647d999e4c3dd7ca9a2e6543"]', 
+        // Changes Needed
       },
       config
     );

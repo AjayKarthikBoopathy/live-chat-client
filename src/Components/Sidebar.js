@@ -16,6 +16,7 @@ import { refreshSidebarFun } from "../Features/refreshSidebar";
 import { myContext } from "./MainContainer";
 
 function Sidebar() {
+  // var link = "https://localhost:8080";
   // var link = "https://live-chat-server-5pyt.vercel.app";
   var link = "https://live-chat-server-nlrk.onrender.com";
   const navigate = useNavigate();
@@ -122,9 +123,30 @@ function Sidebar() {
       <div className={"sb-conversations" + (lightTheme ? "" : " dark")}>
         {conversations.map((conversation, index) => {
           // console.log("current convo : ", conversation);
-          if (conversation.users.length === 1) {
-            return <div key={index}></div>;
+          
+          
+          
+          // commented
+          // if (conversation.users.length === 1) {
+          //   return <div key={index}></div>;
+          // }
+
+          // added
+          var chatName = "";
+          if (conversation.isGroupChat) {
+            chatName = conversation.chatName;
           }
+          else {
+            conversation.users.map((user) => {
+              if (user._id != userData.data._id) {
+                chatName = user.name;
+              }
+            })
+          }
+
+
+
+
           if (conversation.latestMessage === undefined) {
             // console.log("No Latest Message with ", conversation.users[1]);
             return (
@@ -144,16 +166,19 @@ function Sidebar() {
                       "chat/" +
                         conversation._id +
                         "&" +
-                        conversation.users[1].name
+                        // conversation.users[1].name  // removed
+                        chatName // added
                     );
                   }}
                   // dispatch change to refresh so as to update chatArea
                 >
                   <p className={"con-icon" + (lightTheme ? "" : " dark")}>
-                    {conversation.users[1].name[0]}
+                    {/* {conversation.users[1].name[0]} */}
+                    {chatName[0]}
                   </p>
                   <p className={"con-title" + (lightTheme ? "" : " dark")}>
-                    {conversation.users[1].name}
+                    {/* {conversation.users[1].name} */}
+                    {chatName}
                   </p>
 
                   <p className="con-lastMessage">
@@ -175,19 +200,22 @@ function Sidebar() {
                     "chat/" +
                       conversation._id +
                       "&" +
-                      conversation.users[1].name
+                      // conversation.users[1].name
+                      chatName
                   );
                 }}
               >
                 <p className={"con-icon" + (lightTheme ? "" : " dark")}>
-                  {conversation.users[1].name[0]}
+                  {/* {conversation.users[1].name[0]} */}
                 </p>
                 <p className={"con-title" + (lightTheme ? "" : " dark")}>
                   {conversation.users[1].name}
+                  {chatName[0]}
                 </p>
 
                 <p className="con-lastMessage">
-                  {conversation.latestMessage.content}
+                  {/* {conversation.latestMessage.content} */}
+                  {chatName}
                 </p>
                 {/* <p className={"con-timeStamp" + (lightTheme ? "" : " dark")}>
                 {conversation.timeStamp}

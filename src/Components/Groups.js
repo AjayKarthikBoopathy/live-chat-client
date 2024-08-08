@@ -18,6 +18,7 @@ function Groups() {
   const lightTheme = useSelector((state) => state.themeKey);
   const dispatch = useDispatch();
   const [groups, SetGroups] = useState([]);
+  // var link = "https://localhost:8080";
   // var link = "https://live-chat-server-5pyt.vercel.app";
   var link = "https://live-chat-server-nlrk.onrender.com";
 
@@ -99,6 +100,18 @@ function Groups() {
                   //     Authorization: `Bearer ${userData.data.token}`,
                   //   },
                   // };
+
+                  axios.put(
+                    `${link}/chat/addSelfToGroup`,
+                    {
+                      chatId: group._id,
+                      userId: userData.data._id
+                    },
+                    config
+                  );
+
+
+
                   // axios.post(
                   //   "http://localhost:8080/chat/",
                   //   {
