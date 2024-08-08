@@ -187,6 +187,7 @@ function ChatArea() {
             className={"icon" + (lightTheme ? "" : " dark")}
             onClick={() => {
               sendMessage();
+              setMessageContent(""); ////
               setRefresh(!refresh);
             }}
           >

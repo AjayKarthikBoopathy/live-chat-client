@@ -207,15 +207,16 @@ function Sidebar() {
               >
                 <p className={"con-icon" + (lightTheme ? "" : " dark")}>
                   {/* {conversation.users[1].name[0]} */}
+                  {chatName[0]}
                 </p>
                 <p className={"con-title" + (lightTheme ? "" : " dark")}>
-                  {conversation.users[1].name}
-                  {chatName[0]}
+                  {/* {conversation.users[1].name} */}
+                  {chatName}
                 </p>
 
                 <p className="con-lastMessage">
-                  {/* {conversation.latestMessage.content} */}
-                  {chatName}
+                  {conversation.latestMessage.content}
+                  {/* {chatName} */}
                 </p>
                 {/* <p className={"con-timeStamp" + (lightTheme ? "" : " dark")}>
                 {conversation.timeStamp}
